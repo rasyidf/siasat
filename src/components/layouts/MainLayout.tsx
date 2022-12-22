@@ -1,7 +1,8 @@
 import { useMantineTheme, AppShell, Header, MediaQuery, Burger, Navbar, Text, NavLink, Title, Badge, Group } from '@mantine/core';
 import { Link, Outlet, useLocation } from '@tanstack/react-location';
-import { CaretRight } from 'phosphor-react';
+import { CaretRight, SignOut } from 'phosphor-react';
 import { useState } from 'react';
+import { hashHistory } from '../../hashHistory';
 import { staffMenu, parentMenu, studentMenu, UrlToColor, UrlToName, studentSecondaryMenu, parentSecondaryMenu, staffSecondaryMenu } from '../../routes/menus';
 
 const NavVariations: Record<string, { Primary: Array<any>, Secondary: Array<any>; }> = {
@@ -18,9 +19,11 @@ export const MainLayout = () => {
   const theme = useMantineTheme();
   const [opened, setOpened] = useState(false);
   // get current path from react-location
-  const { current: { pathname } } = useLocation();
-  const currentPath = pathname.split('/')[2];
-  const child = pathname.split('/')[3] || "home";
+  const { history: { location } } = useLocation();
+  const pathSpan = location?.pathname?.split('/') || ['', 'unknown', 'home'];
+  const currentPath = location?.pathname?.split('/')[1];
+  const child = location?.pathname?.split('/')[2] || "home";
+  console.log(location?.pathname?.split('/'));
   console.log(currentPath);
   console.log(child);
   const NavsItems = NavVariations[currentPath] || { Primary: [], Secondary: [] };
@@ -88,6 +91,7 @@ export const MainLayout = () => {
           </Navbar.Section>
           <Navbar.Section>
             {SecondaryNavItemAsNode}
+            <NavLink label="Logout" icon={<SignOut/>} component={'button'} onClick={() => { hashHistory.push('/auth/login') }} />
           </Navbar.Section>
         </Navbar>
 

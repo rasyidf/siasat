@@ -8,6 +8,11 @@ import { studentRoutes } from './studentRoutes';
 
 export const routes: Route[] = [
   {
+    path: 'auth',
+    element: <AuthLayout />,
+    children: AuthRoutes
+  },
+  {
     path: '/',
     element: <MainLayout />,
     children: [
@@ -27,11 +32,6 @@ export const routes: Route[] = [
         element: <Navigate to="/student" />,
       }
     ],
-  },
-  {
-    path: 'auth',
-    element: <AuthLayout />,
-    children: AuthRoutes
   },
   {
     element: <Navigate to="auth/login" />,

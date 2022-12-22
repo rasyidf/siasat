@@ -1,13 +1,10 @@
 
 import { ColorScheme, ColorSchemeProvider, Global, MantineProvider } from '@mantine/core';
 import { useHotkeys, useLocalStorage } from '@mantine/hooks';
-import { createHashHistory, ReactLocation, Router } from '@tanstack/react-location';
+import { ReactLocation, Router } from '@tanstack/react-location';
 import { ReactNode, StrictMode } from 'react';
+import { hashHistory } from './hashHistory';
 import { routes } from './routes/index';
-// Create a memory history 
-const hashHistory = createHashHistory()
-
-
 // Set up a ReactLocation instance with the memory history
 const location = new ReactLocation({
   history: hashHistory,
