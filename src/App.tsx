@@ -1,17 +1,16 @@
 
 import { ColorScheme, ColorSchemeProvider, Global, MantineProvider } from '@mantine/core';
 import { useHotkeys, useLocalStorage } from '@mantine/hooks';
-import { createMemoryHistory, ReactLocation, Router } from '@tanstack/react-location';
+import { createHashHistory, ReactLocation, Router } from '@tanstack/react-location';
 import { ReactNode, StrictMode } from 'react';
 import { routes } from './routes/index';
-// Create a memory history
-const memoryHistory = createMemoryHistory({
-  initialEntries: ['/siasat/'] // Pass your initial url
-});
+// Create a memory history 
+const hashHistory = createHashHistory()
+
 
 // Set up a ReactLocation instance with the memory history
 const location = new ReactLocation({
-  history: memoryHistory,
+  history: hashHistory,
 });
 
 const THEME_KEY = 'mantine-color-scheme';
@@ -42,7 +41,7 @@ function App(): JSX.Element {
               },
             })}
           />
-          <Router basepath='/siasat/' location={location} routes={routes} />
+          <Router location={location} routes={routes} />
         </MantineProvider>
       </ColorSchemeProvider>
     </StrictMode>);
