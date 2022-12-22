@@ -35,7 +35,7 @@ function App(): JSX.Element {
               },
             })}
           />
-          <Router location={location} routes={routes} />
+          <Router basepath='/siasat/' location={location} routes={routes} />
         </MantineProvider>
       </ColorSchemeProvider>
     </StrictMode>);
