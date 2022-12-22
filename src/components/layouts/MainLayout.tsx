@@ -21,8 +21,10 @@ export const MainLayout = () => {
   const { current: { pathname } } = useLocation();
   const currentPath = pathname.split('/')[1];
   const child = pathname.split('/')[2] || "home";
-  const NavsItems = NavVariations[currentPath] || [];
-  const NavItemAsNode = NavsItems.Primary.map((item) => {
+  console.log(currentPath);
+  console.log(child);
+  const NavsItems = NavVariations[currentPath] || { Primary: [], Secondary: [] };
+  const NavItemAsNode = NavsItems?.Primary?.map((item) => {
     return (
       <NavLink
         key={`${item.name}-${item.path}`}
@@ -35,7 +37,7 @@ export const MainLayout = () => {
     );
   });
 
-  const SecondaryNavItemAsNode = NavsItems.Secondary.map((item) => {
+  const SecondaryNavItemAsNode = NavsItems?.Secondary?.map((item) => {
     return (
       <NavLink
         key={`${item.name}-${item.path}`}
