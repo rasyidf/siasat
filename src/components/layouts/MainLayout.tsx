@@ -19,8 +19,8 @@ export const MainLayout = () => {
   const [opened, setOpened] = useState(false);
   // get current path from react-location
   const { current: { pathname } } = useLocation();
-  const currentPath = pathname.split('/')[1];
-  const child = pathname.split('/')[2] || "home";
+  const currentPath = pathname.split('/')[2];
+  const child = pathname.split('/')[3] || "home";
   console.log(currentPath);
   console.log(child);
   const NavsItems = NavVariations[currentPath] || { Primary: [], Secondary: [] };
