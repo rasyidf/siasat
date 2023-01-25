@@ -21,11 +21,8 @@ export const MainLayout = () => {
   // get current path from react-location
   const { history: { location } } = useLocation();
   const pathSpan = location?.pathname?.split('/') || ['', 'unknown', 'home'];
-  const currentPath = location?.pathname?.split('/')[1];
-  const child = location?.pathname?.split('/')[2] || "home";
-  console.log(location?.pathname?.split('/'));
-  console.log(currentPath);
-  console.log(child);
+  const currentPath = pathSpan[1];
+  const child = pathSpan[2] || "home";
   const NavsItems = NavVariations[currentPath] || { Primary: [], Secondary: [] };
   const NavItemAsNode = NavsItems?.Primary?.map((item) => {
     return (
@@ -91,7 +88,7 @@ export const MainLayout = () => {
           </Navbar.Section>
           <Navbar.Section>
             {SecondaryNavItemAsNode}
-            <NavLink label="Logout" icon={<SignOut/>} component={'button'} onClick={() => { hashHistory.push('/auth/login') }} />
+            <NavLink label="Logout" icon={<SignOut />} component={'button'} onClick={() => { hashHistory.push('/auth/login'); }} />
           </Navbar.Section>
         </Navbar>
 
